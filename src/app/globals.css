@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+:root {
+  --brand-primary: #0c2340;
+  --brand-secondary: #1657b5;
+  --brand-accent: #1d4ed8;
+  --background-primary: #ffffff;
+  --background-secondary: #f4f7fb;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: #e2e8f0;
+  --focus-ring: #2563eb;
+  --ink: #07111c;
+  --brand-bright: #60a5fa;
+  --shadow-soft: 0 12px 40px -24px rgb(15 23 42 / 0.18);
+  --display: clamp(2rem, 4.2vw, 3.35rem);
+  --h1: clamp(1.85rem, 3vw, 2.75rem);
+  --h2: clamp(1.5rem, 2.4vw, 2.125rem);
+  --h3: clamp(1.125rem, 1.4vw, 1.35rem);
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #dbeafe;
+  color: var(--brand-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a:not([data-button]) {
+  color: inherit;
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer-edge {
+  0% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0.35;
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+.animate-shimmer-edge {
+  animation: shimmer-edge 4s ease-in-out infinite;
+}
+
+.reveal-transition {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.reveal-armed .reveal-transition:not(.reveal-visible) {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .reveal-transition {
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.display {
+  font-size: var(--display);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 650;
+}
+
+.h1 {
+  font-size: var(--h1);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  font-weight: 650;
+}
+
+.h2 {
+  font-size: var(--h2);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 650;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-secondary);
+}
+
+.section {
+  padding-block: 3rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: 4rem;
+  }
+}
+
+.section-muted {
+  background: var(--background-secondary);
+}
+
+.prose-measure {
+  max-width: 36rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
